@@ -565,17 +565,17 @@ impl<'ctx> Evaluator<'ctx> {
             (true, false, false) => self.get_variable_in_schema_or_rule(name),
             // Get from local scope including lambda arguments, lambda variables,
             // loop variables or global variables.
-            (true, true, _) =>
+            (true, true, _) => self.get_variable_in_schema_or_rule(name),
             // Get from local scope including lambda arguments, lambda variables,
             // loop variables or global variables.
-            {
-                match self.resolve_variable_level(name) {
-                    // Closure variable or local variables
-                    Some(level) if level > GLOBAL_LEVEL => self.get_variable(name),
-                    // Schema closure or global variables
-                    _ => self.get_variable_in_schema_or_rule(name),
-                }
-            }
+            // {
+            //     match self.resolve_variable_level(name) {
+            //         // Closure variable or local variables
+            //         Some(level) if level > GLOBAL_LEVEL => self.get_variable(name),
+            //         // Schema closure or global variables
+            //         _ => self.get_variable_in_schema_or_rule(name),
+            //     }
+            // }
         }
     }
 
